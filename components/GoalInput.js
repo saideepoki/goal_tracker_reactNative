@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { View, TextInput, Button, StyleSheet, Modal } from "react-native";
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  Modal,
+  Image,
+} from "react-native";
 import GoalItem from "./GoalItem";
 
 function GoalInput(props) {
@@ -16,22 +23,26 @@ function GoalInput(props) {
   return (
     <Modal visible={props.visible} animationType="fade">
       <View style={styles.inputContainer}>
+        <Image 
+        source={require("../assets/images/goal.png")}
+        style={styles.goalImage} 
+        />
         <TextInput
           style={styles.textInput}
           placeholder="Add your goals"
           value={enteredGoalText}
           onChangeText={goalInputHandler}
+          placeholderTextColor={'white'}
         />
         <View style={styles.buttonContainer}>
-          <View style = {styles.button}>
+          <View style={styles.button}>
             <Button title="Add" onPress={goalButtonHandler} />
           </View>
-          <View style = {styles.button}> 
-            <Button title="Cancel" onPress = {props.closeGoal}/>
+          <View style={styles.button}>
+            <Button title="Cancel" onPress={props.closeGoal} color='#ef476f' />
           </View>
         </View>
       </View>
-
     </Modal>
   );
 }
@@ -44,23 +55,30 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "black",
-    padding: 16
+    padding: 16,
+    backgroundColor: '#023e8a'
   },
   textInput: {
     borderWidth: 1,
     borderColor: "#cccccc",
-    padding: 8,
+    padding: 12,
     width: "94%",
+    color: 'white',
+    backgroundColor : '#0077B6',
+    borderColor: '#0077B6',
+    borderRadius: 10
   },
   buttonContainer: {
-    marginTop: 15,
+    marginTop: 25,
     flexDirection: "row",
   },
   button: {
-    width: '25%',
-    marginRight: 15
-  }
+    width: "25%",
+    marginRight: 15,
+  },
+  goalImage: {
+    marginBottom: 20,
+    height: 100,
+    width: 100,
+  },
 });
